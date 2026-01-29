@@ -3,7 +3,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Menu extends Model
+class Category extends Model
 {
     protected $fillable = ['name', 'slug', 'is_active', 'sort_order'];
 

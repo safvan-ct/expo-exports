@@ -1,13 +1,13 @@
 @extends('layouts.admin')
 
 @section('content')
-    <x-admin.page-header title="Valued Partners" :breadcrumb="[['label' => 'Dashboard', 'link' => route('admin.dashboard')], ['label' => 'Valued Partners']]" />
+    <x-admin.page-header title="Client Reviews" :breadcrumb="[['label' => 'Dashboard', 'link' => route('admin.dashboard')], ['label' => 'Client Reviews']]" />
 
     <div class="row">
         <div class="col-sm-12">
             <div class="card">
                 <div class="card-body">
-                    <button onclick="CRUD.open()" class="btn btn-primary btn-sm add-btn">Add Partner</button>
+                    <button onclick="CRUD.open()" class="btn btn-primary btn-sm add-btn">Add Client Review</button>
                     <x-admin.table :headers="['#', 'Name', 'Comment', 'Rating', 'Active', 'Actions']"></x-admin.table>
                 </div>
             </div>

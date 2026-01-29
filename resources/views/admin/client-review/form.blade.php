@@ -3,7 +3,7 @@
 <x-admin.input name="name" label="Client Name" value="{{ $data?->name ?? '' }}" />
 
 <div class="form-floating col-12 mb-2">
-    <textarea class="form-control" name="comment" id="comment" placeholder="About us" rows="15">{{ old('comment', $data['comment'] ?? null) }}</textarea>
+    <textarea class="form-control" name="comment" id="comment" placeholder="Comment" style="height: 120px">{{ old('comment', $data['comment'] ?? null) }}</textarea>
     <label for="comment">Comment</label>
 </div>
 

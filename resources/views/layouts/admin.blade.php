@@ -70,7 +70,7 @@
 
                     <li
                         class="pc-item pc-hasmenu
-                        {{ Str::is('admin.menu.*', Route::currentRouteName()) ||
+                        {{ Str::is('admin.category.*', Route::currentRouteName()) ||
                         Str::is('admin.govt-center.*', Route::currentRouteName()) ||
                         Str::is('admin.service.*', Route::currentRouteName()) ||
                         Str::is('admin.document-group.*', Route::currentRouteName()) ||
@@ -79,12 +79,13 @@
                             : '' }}">
                         <a href="javascript:void(0)" class="pc-link">
                             <span class="pc-micon"><i class="ti ti-package"></i></span>
-                            <span class="pc-mtext">Service Config</span>
+                            <span class="pc-mtext">Product Config</span>
                             <span class="pc-arrow"><i data-feather="chevron-right"></i></span>
                         </a>
                         <ul class="pc-submenu">
-                            <li class="pc-item {{ Route::currentRouteName() == 'admin.menu.index' ? 'active' : '' }}">
-                                <a class="pc-link" href="{{ route('admin.menu.index') }}">Menus</a>
+                            <li
+                                class="pc-item {{ Route::currentRouteName() == 'admin.category.index' ? 'active' : '' }}">
+                                <a class="pc-link" href="{{ route('admin.category.index') }}">Categories</a>
                             </li>
                             <li
                                 class="pc-item {{ Route::currentRouteName() == 'admin.govt-center.index' ? 'active' : '' }}">

@@ -9,11 +9,11 @@ use App\Http\Controllers\Admin\ClientReviewController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\PosterController;
 use App\Http\Controllers\Admin\ProfileController;
+use App\Http\Controllers\Admin\Service\CategoryController;
 use App\Http\Controllers\Admin\Service\CenterServiceController;
 use App\Http\Controllers\Admin\Service\DocumentController;
 use App\Http\Controllers\Admin\Service\DocumentGroupController;
 use App\Http\Controllers\Admin\Service\GovernmentCenterController;
-use App\Http\Controllers\Admin\Service\MenuController;
 use App\Http\Controllers\Admin\SettingsController;
 use App\Http\Controllers\Auth\EmailVerificationNotificationController;
 use Illuminate\Support\Facades\Route;
@@ -53,9 +53,9 @@ Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function () 
             Route::post('/', 'store')->name('store');
         });
 
-    Route::prefix('menu')
-        ->name('menu.')
-        ->controller(MenuController::class)
+    Route::prefix('category')
+        ->name('category.')
+        ->controller(CategoryController::class)
         ->group(function () {
             Route::get('/', 'index')->name('index');
             Route::post('/', 'store')->name('store');

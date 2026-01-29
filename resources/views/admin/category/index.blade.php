@@ -1,13 +1,13 @@
 @extends('layouts.admin')
 
 @section('content')
-    <x-admin.page-header title="Menu" :breadcrumb="[['label' => 'Dashboard', 'link' => route('admin.dashboard')], ['label' => 'Menu']]" />
+    <x-admin.page-header title="Category" :breadcrumb="[['label' => 'Dashboard', 'link' => route('admin.dashboard')], ['label' => 'Category']]" />
 
     <div class="row">
         <div class="col-sm-12">
             <div class="card">
                 <div class="card-body">
-                    <button onclick="CRUD.open()" class="btn btn-primary btn-sm add-btn">Add Menu</button>
+                    <button onclick="CRUD.open()" class="btn btn-primary btn-sm add-btn">Add Category</button>
                     <x-admin.table :headers="['#', 'Name', 'Slug', 'Active', 'Actions']"></x-admin.table>
                 </div>
             </div>
@@ -17,7 +17,7 @@
 
 @push('scripts')
     <script>
-        CRUD.setResource("menu");
+        CRUD.setResource("category");
 
         const tableColumns = [{
                 data: "id"
