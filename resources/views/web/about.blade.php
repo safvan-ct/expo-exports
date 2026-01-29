@@ -1,139 +1,101 @@
 @extends('layouts.web')
 
 @section('content')
-    <section class="about-hero text-white overflow-hidden">
-        <div class="hero-circle-decoration"></div>
+    <header class="about-header text-center">
         <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-7">
-                    <span class="badge bg-gold-uae mb-3 px-3 py-2 rounded-pill">ESTABLISHED 2018</span>
-                    <h1 class="display-4 fw-bold mb-4">
-                        Leading the Way in <br><span class="text-gold-uae">UAE PRO Services</span>
-                    </h1>
-                    <p class="lead opacity-75">
-                        We simplify government procedures, allowing you to focus on growing your
-                        business while we handle the paperwork.
+            <h1 class="display-4 fw-bold">Our Legacy in Global Trade</h1>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb justify-content-center">
+                    <li class="breadcrumb-item"><a href="index.html" class="text-white text-decoration-none">Home</a>
+                    </li>
+                    <li class="breadcrumb-item active text-white-50" aria-current="page">About Us</li>
+                </ol>
+            </nav>
+        </div>
+    </header>
+
+    <section class="py-5">
+        <div class="container py-4">
+            <div class="row align-items-center g-5">
+                <div class="col-lg-6">
+                    <img src="https://images.unsplash.com/photo-1553413077-190dd305871c?q=80&w=1935"
+                        class="img-fluid rounded-4 shadow" alt="Our Warehouse"
+                        style="max-height: 650px; width: 100%; object-fit: cover">
+                </div>
+                <div class="col-lg-6">
+                    <h6 class="text-primary fw-bold text-uppercase">Who We Are</h6>
+                    <h2 class="display-6 fw-bold mb-4">A Trusted Name in Exporting Quality Since 2010</h2>
+                    <p class="text-muted mb-4">
+                        Expo Global was founded on the principle of bridging the gap between local quality producers and
+                        the international market. We specialize in the sourcing, processing, and shipping of premium
+                        agricultural goods and processed food items.
                     </p>
+                    <p class="text-muted">
+                        With a robust network spanning over 50 countries, we ensure that every product leaving our
+                        facility meets international safety standards (ISO & Global GAP). Our focus isn't just on
+                        shipping products; it's on building lasting partnerships.
+                    </p>
+                    <div class="row mt-4">
+                        <div class="col-6">
+                            <h5 class="fw-bold"><i class="fas fa-check-circle text-success me-2"></i>Certified Quality
+                            </h5>
+                        </div>
+                        <div class="col-6">
+                            <h5 class="fw-bold"><i class="fas fa-check-circle text-success me-2"></i>Global Network</h5>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <div class="container pt-5 pb-3">
-        <div class="row align-items-center">
-            <div class="col-lg-6">
-                <h6 class="text-gold-uae fw-bold text-uppercase">Our Story</h6>
-                <h2 class="fw-bold mb-4 custom-underline">Reliable Partners for Success</h2>
-                <p class="mb-4 text-secondary">Starting a journey in the UAE requires a partner who understands the
-                    local laws and government landscape. Our center has spent over two decades building direct
-                    relationships with ministries to provide you with the fastest results.</p>
-
-                <div class="row g-4 mt-2">
-                    <div class="col-md-6 d-flex gap-3">
-                        <div class="feature-icon"><i class="bi bi-patch-check"></i></div>
-                        <div>
-                            <h6 class="fw-bold mb-1">MOHRE Authorized</h6>
-                            <p class="small text-muted mb-0">Direct access to labour systems.</p>
-                        </div>
-                    </div>
-                    <div class="col-md-6 d-flex gap-3">
-                        <div class="feature-icon"><i class="bi bi-lightning-charge"></i></div>
-                        <div>
-                            <h6 class="fw-bold mb-1">Express Results</h6>
-                            <p class="small text-muted mb-0">Same-day processing for many tasks.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="about-features mt-5">
-                    <div class="d-flex gap-3 mb-4">
-                        <div class="feature-icon"><i class="bi bi-shield-check"></i></div>
-                        <div>
-                            <h5 class="fw-bold">Certified Expertise</h5>
-                            <p class="small text-muted">Authorized by UAE government entities for official document
-                                processing.</p>
-                        </div>
-                    </div>
-                    <div class="d-flex gap-3">
-                        <div class="feature-icon"><i class="bi bi-clock-history"></i></div>
-                        <div>
-                            <h5 class="fw-bold">Time Efficiency</h5>
-                            <p class="small text-muted">We cut down processing times by 40% through our direct
-                                digital link with authorities.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-lg-6">
-                <div class="about-img-group position-relative">
-                    <div class="main-img shadow-lg overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=1200"
-                            class="img-fluid" alt="Team Office">
-                    </div>
-                    <div class="floating-stats shadow-lg rounded-4 p-4 animate-float">
-                        <div class="text-center">
-                            <h2 class="fw-bold text-primary mb-0">7+</h2>
-                            <p class="small text-muted text-uppercase mb-0">Years Excellence</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <section class="service-section">
+    <section class="stats-bg text-center">
         <div class="container">
-            <div class="support-cta d-flex flex-column flex-md-row align-items-md-center justify-content-between gap-4">
-                <div>
-                    <h4 class="fw-bold mb-1">Not sure what you need?</h4>
-                    <p class="mb-0 opacity-75">Our consultants are ready to guide you through the process.</p>
-                </div>
-                <a href="javascript:void(0);" class="btn btn-light btn-lg rounded-pill px-4 fw-bold"
-                    data-bs-toggle="modal" data-bs-target="#consultantModal" data-source="specialised_services_callback">
-                    <i class="bi bi-telephone-fill me-2"></i> Contact Us
-                </a>
-            </div>
-
-        </div>
-    </section>
-
-    <section class="bg-light py-4">
-        <div class="container">
-            <div class="text-center mb-3">
-                <h2 class="fw-bold">Our Core Values</h2>
-                <div class="heading-line mx-auto"></div>
-            </div>
             <div class="row g-4">
-                <div class="col-md-4">
-                    <div class="card h-100 border-0 p-4 shadow-sm text-center">
-                        <i class="bi bi-eye fs-1 text-primary-uae mb-3"></i>
-                        <h4 class="fw-bold">Transparency</h4>
-                        <p class="text-muted small">No hidden fees or unexpected delays. We provide clear tracking for every
-                            application.</p>
-                    </div>
+                <div class="col-md-3 stat-item">
+                    <h2>15+</h2>
+                    <p class="mb-0 opacity-75">Years Experience</p>
                 </div>
-                <div class="col-md-4">
-                    <div class="card h-100 border-0 p-4 shadow-sm text-center">
-                        <i class="bi bi-lightning fs-1 text-primary-uae mb-3"></i>
-                        <h4 class="fw-bold">Agility</h4>
-                        <p class="text-muted small">Quick adaptation to new government laws and instant processing updates
-                            for clients.</p>
-                    </div>
+                <div class="col-md-3 stat-item">
+                    <h2>500+</h2>
+                    <p class="mb-0 opacity-75">Global Clients</p>
                 </div>
-                <div class="col-md-4">
-                    <div class="card h-100 border-0 p-4 shadow-sm text-center">
-                        <i class="bi bi-heart fs-1 text-primary-uae mb-3"></i>
-                        <h4 class="fw-bold">Integrity</h4>
-                        <p class="text-muted small">Handling your sensitive legal and corporate documents with the highest
-                            confidentiality.</p>
-                    </div>
+                <div class="col-md-3 stat-item">
+                    <h2>120k</h2>
+                    <p class="mb-0 opacity-75">Tons Exported</p>
+                </div>
+                <div class="col-md-3 stat-item">
+                    <h2>50+</h2>
+                    <p class="mb-0 opacity-75">Countries Served</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="py-5 bg-white">
-        <x-web.clients :partners="$partners" />
+    <section class="py-5 bg-light">
+        <div class="container py-5">
+            <div class="row g-4">
+                <div class="col-md-6">
+                    <div class="card mv-card h-100 p-4">
+                        <div class="card-body text-center">
+                            <div class="icon-box mb-3 text-primary"><i class="fas fa-eye fa-3x"></i></div>
+                            <h3 class="fw-bold">Our Vision</h3>
+                            <p class="text-muted">To be the most reliable and innovative global bridge for high-quality
+                                food products, setting benchmarks in ethical trade and sustainability.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card mv-card h-100 p-4">
+                        <div class="card-body text-center">
+                            <div class="icon-box mb-3 text-primary"><i class="fas fa-rocket fa-3x"></i></div>
+                            <h3 class="fw-bold">Our Mission</h3>
+                            <p class="text-muted">To empower local farmers by providing them a global platform while
+                                ensuring our international buyers receive only the freshest, highest-grade produce.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
 @endsection

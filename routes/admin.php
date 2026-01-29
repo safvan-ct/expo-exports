@@ -17,7 +17,7 @@ use App\Http\Controllers\Admin\SettingsController;
 use App\Http\Controllers\Auth\EmailVerificationNotificationController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('login', [LoginController::class, 'create'])->name('login');
+// Route::get('login', [LoginController::class, 'create'])->name('login');
 
 Route::middleware('guest')->prefix('admin')->name('admin.')->group(function () {
     Route::get('register', [RegisterController::class, 'create'])->name('register');
