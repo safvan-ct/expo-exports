@@ -38,13 +38,12 @@
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-md-6 mb-4 mb-md-0">
-                    <img src="https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&q=80&w=1469"
+                    <img src="{{ $about['home_about_image'] ? asset('storage/' . $about['home_about_image']) : 'https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&q=80&w=1469' }}"
                         alt="Shipping" class="img-fluid split-image">
                 </div>
                 <div class="col-md-6 ps-md-5">
-                    <h2 class="fw-bold mb-4">We are a trusted exporting company</h2>
-                    <p class="fs-5 text-muted italic">"Delivering high quality products across the global market. Our
-                        focus on quality, timely delivery, and long-term partnerships."</p>
+                    <h2 class="fw-bold mb-4">{{ $about['home_about_heading'] }}</h2>
+                    <p class="fs-5 text-muted italic">"{{ $about['home_about_desc'] }}"</p>
                 </div>
             </div>
         </div>
@@ -78,34 +77,29 @@
         </div>
     </section>
 
+    @php
+        $countries = [
+            'us' => 'USA',
+            'ae' => 'UAE',
+            'gb' => 'UK',
+            'fr' => 'France',
+            'de' => 'Germany',
+        ];
+    @endphp
+
     <section class="py-5">
         <div class="container text-center">
             <h2 class="fw-bold mb-5">Countries We Export To</h2>
             <div class="row g-4 justify-content-center">
-                <div class="col-6 col-md-2">
-                    <div class="p-3 border rounded shadow-sm h-100">
-                        <img src="https://flagcdn.com/us.svg" width="60" alt="USA" class="mb-2">
-                        <p class="fw-bold mb-0">USA</p>
+                @foreach ($countries as $key => $item)
+                    <div class="col-6 col-md-2">
+                        <div class="p-3 border rounded shadow-sm h-100">
+                            <img src="https://flagcdn.com/{{ $key }}.svg" width="60" alt="USA"
+                                class="mb-2">
+                            <p class="fw-bold mb-0">{{ $item }}</p>
+                        </div>
                     </div>
-                </div>
-                <div class="col-6 col-md-2">
-                    <div class="p-3 border rounded shadow-sm h-100">
-                        <img src="https://flagcdn.com/ae.svg" width="60" alt="UAE" class="mb-2">
-                        <p class="fw-bold mb-0">UAE</p>
-                    </div>
-                </div>
-                <div class="col-6 col-md-2">
-                    <div class="p-3 border rounded shadow-sm h-100">
-                        <img src="https://flagcdn.com/gb.svg" width="60" alt="UK" class="mb-2">
-                        <p class="fw-bold mb-0">UK</p>
-                    </div>
-                </div>
-                <div class="col-6 col-md-2">
-                    <div class="p-3 border rounded shadow-sm h-100">
-                        <img src="https://flagcdn.com/de.svg" width="60" alt="Germany" class="mb-2">
-                        <p class="fw-bold mb-0">Germany</p>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
     </section>
@@ -198,72 +192,62 @@
         </div>
     </section>
 
-    <section class="py-5 bg-light">
-        <div class="container">
-            <h2 class="text-center fw-bold mb-5">What Our Customers Say</h2>
-            <div class="row g-4">
-                <div class="col-md-4">
-                    <div class="card border-0 shadow-sm h-100 p-3">
-                        <div class="card-body">
-                            <div class="text-warning mb-2">
-                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
-                                    class="fas fa-star"></i><i class="fas fa-star"></i>
-                            </div>
-                            <p class="card-text text-muted">"Excellent quality of products and very reliable shipping.
-                                Highly recommend for international trade."</p>
-                            <hr>
-                            <div class="d-flex align-items-center">
-                                <div class="bg-navy rounded-circle p-2 text-white me-3"
-                                    style="width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; background: #001f3f;">
-                                    JD</div>
-                                <h6 class="mb-0">John Doe, NY</h6>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+    @if ($clientReviews->count() > 0)
+        <section class="py-5 bg-light">
+            <div class="container">
+                <h2 class="text-center fw-bold mb-5">What Our Customers Say</h2>
+                <div class="row g-4">
+                    @foreach ($clientReviews as $item)
+                        @php
+                            $string = $item->name;
+                            $words = explode(' ', $string);
+                            $acronym = '';
 
-                <div class="col-md-4">
-                    <div class="card border-0 shadow-sm h-100 p-3">
-                        <div class="card-body">
-                            <div class="text-warning mb-2">
-                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
-                                    class="fas fa-star"></i><i class="fas fa-star"></i>
-                            </div>
-                            <p class="card-text text-muted">"Excellent quality of products and very reliable shipping.
-                                Highly recommend for international trade."</p>
-                            <hr>
-                            <div class="d-flex align-items-center">
-                                <div class="bg-navy rounded-circle p-2 text-white me-3"
-                                    style="width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; background: #001f3f;">
-                                    JD</div>
-                                <h6 class="mb-0">John Doe, NY</h6>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                            foreach ($words as $word) {
+                                $acronym .= strtoupper($word[0]);
+                            }
+                        @endphp
 
-                <div class="col-md-4">
-                    <div class="card border-0 shadow-sm h-100 p-3">
-                        <div class="card-body">
-                            <div class="text-warning mb-2">
-                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
-                                    class="fas fa-star"></i><i class="fas fa-star"></i>
-                            </div>
-                            <p class="card-text text-muted">"Excellent quality of products and very reliable shipping.
-                                Highly recommend for international trade."</p>
-                            <hr>
-                            <div class="d-flex align-items-center">
-                                <div class="bg-navy rounded-circle p-2 text-white me-3"
-                                    style="width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; background: #001f3f;">
-                                    JD</div>
-                                <h6 class="mb-0">John Doe, NY</h6>
+                        <div class="col-md-4">
+                            <div class="card border-0 shadow-sm h-100 p-3">
+                                <div class="card-body d-flex flex-column">
+
+                                    <!-- Rating -->
+                                    <div class="text-warning mb-2">
+                                        @for ($i = 0; $i < $item->rating; $i++)
+                                            <i class="fas fa-star"></i>
+                                        @endfor
+
+                                        @for ($i = $item->rating; $i < 5; $i++)
+                                            <i class="far fa-star"></i>
+                                        @endfor
+                                    </div>
+
+                                    <!-- Comment -->
+                                    <p class="card-text text-muted">"{{ $item->comment }}"</p>
+
+                                    <!-- Push footer to bottom -->
+                                    <div class="mt-auto">
+                                        <hr>
+                                        <div class="d-flex align-items-center">
+                                            <div class="bg-navy rounded-circle text-white me-3"
+                                                style="width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; background: #001f3f;">
+                                                {{ $acronym }}
+                                            </div>
+                                            <h6 class="mb-0">
+                                                {{ $item->name }}, {{ $item->location }}
+                                            </h6>
+                                        </div>
+                                    </div>
+
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    @endforeach
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+    @endif
 @endsection
 
 @push('scripts')

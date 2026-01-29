@@ -1,11 +1,12 @@
 <?php
 
+use App\Http\Controllers\Admin\AboutController;
 use App\Http\Controllers\Admin\Auth\LoginController;
 use App\Http\Controllers\Admin\Auth\PasswordResetController;
 use App\Http\Controllers\Admin\Auth\RegisterController;
 use App\Http\Controllers\Admin\BookingController;
+use App\Http\Controllers\Admin\ClientReviewController;
 use App\Http\Controllers\Admin\DashboardController;
-use App\Http\Controllers\Admin\PartnerController;
 use App\Http\Controllers\Admin\PosterController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\Service\CenterServiceController;
@@ -43,6 +44,14 @@ Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function () 
     Route::post('email/verification-notification', [EmailVerificationNotificationController::class, 'store'])
         ->middleware('throttle:6,1')
         ->name('verification.send');
+
+    Route::prefix('about')
+        ->name('about.')
+        ->controller(AboutController::class)
+        ->group(function () {
+            Route::get('/', 'index')->name('index');
+            Route::post('/', 'store')->name('store');
+        });
 
     Route::prefix('menu')
         ->name('menu.')
@@ -127,18 +136,18 @@ Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function () 
             Route::patch('/{id}/toggle-status', 'toggleStatus')->name('toggle-status');
         });
 
-    Route::prefix('partners')
-        ->name('partners.')
-        ->controller(PartnerController::class)
+    Route::prefix('client-reviews')
+        ->name('client-reviews.')
+        ->controller(ClientReviewController::class)
         ->group(function () {
             Route::get('/', 'index')->name('index');
             Route::post('/', 'store')->name('store');
-            Route::put('/{partner}', 'update')->name('update');
-            Route::delete('/{partner}', 'destroy')->name('destroy');
+            Route::put('/{id}', 'update')->name('update');
+            Route::delete('/{client-review}', 'destroy')->name('destroy');
 
             Route::get('/form/{id?}', 'form')->name('form');
             Route::get('/datatable', 'dataTable')->name('datatable');
-            Route::patch('/{partner}/toggle-status', 'toggleStatus')->name('toggle-status');
+            Route::patch('/{id}/toggle-status', 'toggleStatus')->name('toggle-status');
         });
 
     Route::prefix('settings')

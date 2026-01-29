@@ -132,33 +132,48 @@
             <div class="row">
                 <div class="col-md-4 mb-3">
                     <a href="{{ route('web.index') }}">
-                        <img class="mb-3" src="{{ asset('img/logo.png') }}" height="50" alt="{{ config('app.name') }}">
+                        <img class="mb-3" src="{{ asset('img/logo.png') }}" height="50"
+                            alt="{{ config('app.name') }}">
                     </a>
-                    <p>
-                        Expo Exports specializes in sourcing and exporting quality products worldwide. We focus on
-                        international standards, efficient logistics, and long-term global partnerships.
-                    </p>
+                    <p>{{ $generalSettings['about_us'] }}</p>
                 </div>
                 <div class="col-md-4 mb-3">
                     <h5 class="fw-bold mb-3">Contact Info</h5>
                     <p class="m-1">
                         <i class="fas fa-map-marker-alt me-2"></i>
-                        Expo Exports,
-                        Business Park, MG Road,<br>
-                        Kochi, Kerala, India – 682016
+                        {{ $generalSettings['address_1'] ?? '' }}<br>
+                        {{ $generalSettings['address_2'] ?? '' }}
                     </p>
-                    <p class="m-1"><i class="fas fa-phone me-2"></i> +123 456 7890</p>
-                    <p class="m-1"><i class="fas fa-envelope me-2"></i> info@expoexports.com</p>
-                    <button class="btn btn-success btn-sm mt-2"><i class="fab fa-whatsapp me-1"></i> WhatsApp
-                        Us</button>
+                    <p class="m-1">
+                        <a class="text-decoration-none text-reset"
+                            href="tel:{{ $generalSettings['primary_phone'] }}">
+                            <i class="fas fa-phone me-2"></i> {{ $generalSettings['primary_phone'] }}
+                        </a>
+                    </p>
+                    <p class="m-1">
+                        <a class="text-decoration-none text-reset" href="mailto:{{ $generalSettings['email'] }}">
+                            <i class="fas fa-envelope me-2"></i> {{ $generalSettings['email'] }}
+                        </a>
+                    </p>
+                    <a href="https://wa.me/{{ $generalSettings['whatsapp'] }}?text={{ urlencode($generalSettings['whatsapp_message']) }}"
+                        target="_blank" class="btn btn-success btn-sm mt-2" aria-label="Chat on WhatsApp">
+
+                        <i class="fab fa-whatsapp me-1"></i> WhatsApp Us
+
+                    </a>
                 </div>
 
                 <div class="col-md-4 mb-3">
                     <h5 class="fw-bold mb-3">Follow Us</h5>
                     <div class="social-icons">
-                        <a href="#"><i class="fab fa-facebook me-2"></i></a>
-                        <a href="#"><i class="fab fa-instagram me-2"></i></a>
-                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="{{ $generalSettings['facebook'] ?? 'javascript:void(0)' }}"><i
+                                class="fab fa-facebook me-2"></i></a>
+                        <a href="{{ $generalSettings['instagram'] ?? 'javascript:void(0)' }}"><i
+                                class="fab fa-instagram me-2"></i></a>
+                        <a href="{{ $generalSettings['linkedin'] ?? 'javascript:void(0)' }}"><i
+                                class="fab fa-linkedin me-2"></i></a>
+                        <a href="{{ $generalSettings['twitter'] ?? 'javascript:void(0)' }}"><i
+                                class="fab fa-twitter"></i></a>
                     </div>
                 </div>
             </div>

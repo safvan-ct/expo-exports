@@ -12,14 +12,36 @@ class SettingsSeeder extends Seeder
     public function run(): void
     {
         $data = [
-            'primary_phone'    => '971522857577',
-            'email'            => 'shafeeqmsd@gmail.com',
-            'whatsapp'         => '971522857577',
-            'whatsapp_message' => 'Hello, I would like to know more about your services.',
-            'service_tagline'  => 'Easily manage and process your applications with our premium streamlined system.',
-            'about_us'         => 'Easily manage and process your applications with our premium streamlined system.',
-            'useful_services'  => '1,2,3,4',
-            'key_services'     => '1,2,3,4',
+            'address_1'           => 'Expo Exports, Business Park, MG Road,',
+            'address_2'           => 'Kochi, Kerala, India - 682016',
+
+            'primary_phone'       => '91 123 456 7890',
+            'email'               => 'example@gmail.com',
+
+            'whatsapp'            => '911234567890',
+            'whatsapp_message'    => 'Hello, I would like to know more about your services.',
+
+            'about_us'            => 'Expo Exports specializes in sourcing and exporting quality products worldwide. We focus on international standards, efficient logistics, and long-term global partnerships.',
+
+            'about_header'        => "Our Legacy in Global Trade",
+
+            'home_about_heading'  => "We are a trusted exporting company",
+            'home_about_desc'     => "Delivering high quality products across the global market. Our focus on quality, timely delivery, and long-term partnerships.",
+            'home_about_image'    => null,
+
+            'about_heading'       => "A Trusted Name in Exporting Quality Since 2025",
+            'about_desc_1'        => "Expo Global was founded on the principle of bridging the gap between local quality producers and the international market. We specialize in the sourcing, processing, and shipping of premium agricultural goods and processed food items.",
+            'about_desc_2'        => "With a robust network spanning over 50 countries, we ensure that every product leaving our facility meets international safety standards (ISO & Global GAP). Our focus isn't just on shipping products; it's on building lasting partnerships.",
+            'about_image'         => null,
+            'about_features'      => "Certified Quality, Global Network, Timely Delivery, Long-Term Partnerships",
+
+            'years_of_experience' => '2',
+            'total_clients'       => '18',
+            'tons_exported'       => '380',
+            'countries_served'    => '5',
+
+            'vision'              => "To be the most reliable and innovative global bridge for high-quality food products, setting benchmarks in ethical trade and sustainability.",
+            'mission'             => "To empower local farmers by providing them a global platform while ensuring our international buyers receive only the freshest, highest-grade produce.",
         ];
 
         foreach ($data as $key => $item) {

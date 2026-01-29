@@ -31,14 +31,6 @@
                         <label class="form-check-label" for="cat4">Biscuits & Snacks</label>
                     </div>
 
-                    <h5 class="filter-title mt-4">Origin</h5>
-                    <select class="form-select mb-4">
-                        <option selected>Select Country</option>
-                        <option>India</option>
-                        <option>USA</option>
-                        <option>UAE</option>
-                    </select>
-
                     <button class="btn btn-navy w-100">Apply Filters</button>
                 </div>
             </div>

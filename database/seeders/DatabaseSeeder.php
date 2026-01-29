@@ -15,20 +15,13 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
-
-        User::factory()->create([
-            'name'     => 'Test User',
-            'email'    => 'test@example.com',
-            'password' => Hash::make('password'),
-        ]);
+        // User::factory()->create([
+        //     'name'     => 'Expo Exports',
+        //     'email'    => 'expoexports@admin.com',
+        //     'password' => Hash::make('expo@2026$exports'),
+        // ]);
 
         $this->call([
-            MenuSeeder::class,
-            GovernmentCenterSeeder::class,
-            CenterServiceSeeder::class,
-            DocumentGroupSeeder::class,
-            DocumentSeeder::class,
             SettingsSeeder::class,
         ]);
     }

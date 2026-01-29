@@ -8,7 +8,7 @@
             <div class="card">
                 <div class="card-body">
                     <button onclick="CRUD.open()" class="btn btn-primary btn-sm add-btn">Add Partner</button>
-                    <x-admin.table :headers="['#', 'Name', 'Logo', 'Active', 'Actions']"></x-admin.table>
+                    <x-admin.table :headers="['#', 'Name', 'Comment', 'Rating', 'Active', 'Actions']"></x-admin.table>
                 </div>
             </div>
         </div>
@@ -17,7 +17,7 @@
 
 @push('scripts')
     <script>
-        CRUD.setResource("partners");
+        CRUD.setResource("client-reviews");
 
         const tableColumns = [{
                 data: "id"
@@ -26,13 +26,17 @@
                 data: "name"
             },
             {
-                data: "image_src",
-                orderable: false,
-                searchable: false,
-                render: (url) => {
-                    return url ?
-                        `<img src="${url}" width="40" height="40" class="rounded">` :
-                        '-';
+                data: "comment"
+            },
+            {
+                data: "rating",
+                render: function(data, type, row) {
+                    // view stars
+                    let stars = '';
+                    for (let i = 0; i < data; i++) {
+                        stars += '<i class="fas fa-star text-warning"></i>';
+                    }
+                    return stars;
                 }
             },
 

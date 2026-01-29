@@ -105,7 +105,7 @@
                         class="pc-item pc-hasmenu
                         {{ Str::is('admin.poster.*', Route::currentRouteName()) ||
                         Str::is('admin.settings.*', Route::currentRouteName()) ||
-                        Str::is('admin.partners.*', Route::currentRouteName())
+                        Str::is('admin.client-reviews.*', Route::currentRouteName())
                             ? 'active pc-trigger'
                             : '' }}">
                         <a href="javascript:void(0)" class="pc-link">
@@ -114,13 +114,16 @@
                             <span class="pc-arrow"><i data-feather="chevron-right"></i></span>
                         </a>
                         <ul class="pc-submenu">
+                            <li class="pc-item {{ Route::currentRouteName() == 'admin.about.*' ? 'active' : '' }}">
+                                <a class="pc-link" href="{{ route('admin.about.index') }}">About</a>
+                            </li>
                             <li
                                 class="pc-item {{ Route::currentRouteName() == 'admin.poster.index' ? 'active' : '' }}">
                                 <a class="pc-link" href="{{ route('admin.poster.index') }}">Poster</a>
                             </li>
                             <li
-                                class="pc-item {{ Str::is('admin.partners.*', Route::currentRouteName()) ? 'active' : '' }}">
-                                <a class="pc-link" href="{{ route('admin.partners.index') }}">Partners</a>
+                                class="pc-item {{ Str::is('admin.client-reviews.*', Route::currentRouteName()) ? 'active' : '' }}">
+                                <a class="pc-link" href="{{ route('admin.client-reviews.index') }}">Client Reviews</a>
                             </li>
                             <li class="pc-item {{ Route::currentRouteName() == 'admin.settings.*' ? 'active' : '' }}">
                                 <a class="pc-link" href="{{ route('admin.settings.index') }}">Settings</a>

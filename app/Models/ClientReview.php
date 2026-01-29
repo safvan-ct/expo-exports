@@ -3,11 +3,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Partner extends Model
+class ClientReview extends Model
 {
-    protected $fillable = ['name', 'image', 'is_active'];
-
-    protected $appends = ['image_src'];
+    protected $fillable = ['name', 'comment', 'rating', 'is_active'];
 
     public function getImageSrcAttribute()
     {

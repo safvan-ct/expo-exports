@@ -3,11 +3,8 @@ namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
 use App\Jobs\SendBookingAdminMail;
-use App\Models\CenterService;
+use App\Models\ClientReview;
 use App\Models\ConsultantRequest;
-use App\Models\GovernmentCenter;
-use App\Models\Partner;
-use App\Models\Poster;
 use App\Models\Settings;
 use Illuminate\Http\Request;
 
@@ -15,30 +12,27 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $key = Settings::where('key', 'key_services')->pluck('value')->first();
+        $about = Settings::select('key', 'value')
+            ->whereIn('key', ['home_about_heading', 'home_about_desc', 'home_about_image'])
+            ->pluck('value', 'key');
 
-        $services = CenterService::select('id', 'name', 'slug', 'tagline', 'ad_image')
-            ->whereIn('id', explode(',', $key))
-            ->where('is_active', true)
-            ->orderBy('sort_order')
-            ->get();
+        $clientReviews = ClientReview::select('id', 'name', 'comment', 'rating')->where('is_active', true)->get();
 
-        $govtCenters = GovernmentCenter::select('id', 'name', 'slug', 'tagline', 'ad_image')
-            ->where('is_active', true)
-            ->orderBy('sort_order')
-            ->get();
-
-        $posters  = Poster::select('id', 'name', 'image')->where('is_active', true)->get();
-        $partners = Partner::select('id', 'name', 'image')->where('is_active', true)->get();
-
-        return view('web.index', compact('services', 'partners', 'posters', 'govtCenters'));
+        return view('web.index', compact('about', 'clientReviews'));
     }
 
     public function about()
     {
-        $partners = Partner::select('id', 'name', 'image')->where('is_active', true)->get();
+        $about = Settings::select('key', 'value')
+            ->whereIn('key', [
+                'about_header',
+                'about_heading', 'about_desc_1', 'about_desc_2', 'about_image', 'about_features',
+                'years_of_experience', 'total_clients', 'tons_exported', 'countries_served',
+                'vision', 'mission',
+            ])
+            ->pluck('value', 'key');
 
-        return view('web.about', compact('partners'));
+        return view('web.about', compact('about'));
     }
 
     public function products()
