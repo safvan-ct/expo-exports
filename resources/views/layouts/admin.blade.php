@@ -71,7 +71,7 @@
                     <li
                         class="pc-item pc-hasmenu
                         {{ Str::is('admin.category.*', Route::currentRouteName()) ||
-                        Str::is('admin.govt-center.*', Route::currentRouteName()) ||
+                        Str::is('admin.product.*', Route::currentRouteName()) ||
                         Str::is('admin.service.*', Route::currentRouteName()) ||
                         Str::is('admin.document-group.*', Route::currentRouteName()) ||
                         Str::is('admin.document.*', Route::currentRouteName())
@@ -88,8 +88,8 @@
                                 <a class="pc-link" href="{{ route('admin.category.index') }}">Categories</a>
                             </li>
                             <li
-                                class="pc-item {{ Route::currentRouteName() == 'admin.govt-center.index' ? 'active' : '' }}">
-                                <a class="pc-link" href="{{ route('admin.govt-center.index') }}">Govt. Centers</a>
+                                class="pc-item {{ Route::currentRouteName() == 'admin.product.index' ? 'active' : '' }}">
+                                <a class="pc-link" href="{{ route('admin.product.index') }}">Products</a>
                             </li>
                             <li
                                 class="pc-item {{ Str::is('admin.service.*', Route::currentRouteName()) ||

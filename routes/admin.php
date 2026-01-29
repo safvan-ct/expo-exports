@@ -13,12 +13,12 @@ use App\Http\Controllers\Admin\Service\CategoryController;
 use App\Http\Controllers\Admin\Service\CenterServiceController;
 use App\Http\Controllers\Admin\Service\DocumentController;
 use App\Http\Controllers\Admin\Service\DocumentGroupController;
-use App\Http\Controllers\Admin\Service\GovernmentCenterController;
+use App\Http\Controllers\Admin\Service\ProductController;
 use App\Http\Controllers\Admin\SettingsController;
 use App\Http\Controllers\Auth\EmailVerificationNotificationController;
 use Illuminate\Support\Facades\Route;
 
-// Route::get('login', [LoginController::class, 'create'])->name('login');
+Route::get('login', [LoginController::class, 'create'])->name('login');
 
 Route::middleware('guest')->prefix('admin')->name('admin.')->group(function () {
     Route::get('register', [RegisterController::class, 'create'])->name('register');
@@ -45,21 +45,13 @@ Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function () 
         ->middleware('throttle:6,1')
         ->name('verification.send');
 
-    Route::prefix('about')
-        ->name('about.')
-        ->controller(AboutController::class)
-        ->group(function () {
-            Route::get('/', 'index')->name('index');
-            Route::post('/', 'store')->name('store');
-        });
-
     Route::prefix('category')
         ->name('category.')
         ->controller(CategoryController::class)
         ->group(function () {
             Route::get('/', 'index')->name('index');
             Route::post('/', 'store')->name('store');
-            Route::put('/{menu}', 'update')->name('update');
+            Route::put('/{category}', 'update')->name('update');
             Route::delete('/{id}', 'destroy')->name('destroy');
 
             Route::get('/form/{id?}', 'form')->name('form');
@@ -67,13 +59,13 @@ Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function () 
             Route::patch('/{id}/toggle-status', 'toggleStatus')->name('toggle-status');
         });
 
-    Route::prefix('govt-center')
-        ->name('govt-center.')
-        ->controller(GovernmentCenterController::class)
+    Route::prefix('product')
+        ->name('product.')
+        ->controller(ProductController::class)
         ->group(function () {
             Route::get('/', 'index')->name('index');
             Route::post('/', 'store')->name('store');
-            Route::put('/{govtCenter}', 'update')->name('update');
+            Route::put('/{product}', 'update')->name('update');
             Route::delete('/{id}', 'destroy')->name('destroy');
 
             Route::get('/form/{id?}', 'form')->name('form');
@@ -93,6 +85,14 @@ Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function () 
             Route::get('/form/{id?}', 'form')->name('form');
             Route::get('/datatable', 'dataTable')->name('datatable');
             Route::patch('/{id}/toggle-status', 'toggleStatus')->name('toggle-status');
+        });
+
+    Route::prefix('about')
+        ->name('about.')
+        ->controller(AboutController::class)
+        ->group(function () {
+            Route::get('/', 'index')->name('index');
+            Route::post('/', 'store')->name('store');
         });
 
     Route::prefix('document')

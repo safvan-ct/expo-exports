@@ -2,6 +2,7 @@
 namespace App\Providers;
 
 use App\Models\Settings;
+use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\View;
@@ -33,5 +34,7 @@ class AppServiceProvider extends ServiceProvider
         });
 
         Schema::defaultStringLength(191);
+
+        Paginator::useBootstrapFive();
     }
 }

@@ -8,7 +8,7 @@
             <div class="card">
                 <div class="card-body">
                     <button onclick="CRUD.open()" class="btn btn-primary btn-sm add-btn">Add Category</button>
-                    <x-admin.table :headers="['#', 'Name', 'Slug', 'Active', 'Actions']"></x-admin.table>
+                    <x-admin.table :headers="['#', 'Name', 'Slug', 'Featured', 'Active', 'Actions']"></x-admin.table>
                 </div>
             </div>
         </div>
@@ -29,7 +29,10 @@
                 data: "slug"
             },
 
+            CRUD.columnToggleStatus('is_featured'),
+
             CRUD.columnToggleStatus(),
+
             CRUD.columnActions(true, false),
         ];
 

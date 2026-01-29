@@ -11,19 +11,17 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('center_services', function (Blueprint $table) {
+        Schema::create('products', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('menu_id')->nullable()->constrained();
-            $table->foreignId('government_center_id')->nullable()->constrained();
+            $table->foreignId('category_id')->constrained()->onDelete('cascade');
             $table->string('name');
             $table->string('slug')->unique();
-            $table->text('tagline')->nullable();
-            $table->longText('notes')->nullable();
 
-            $table->string('ad_image')->nullable();
+            $table->longText('description')->nullable();
+
+            $table->string('image')->nullable();
 
             $table->boolean('is_active')->default(true);
-            $table->unsignedInteger('sort_order')->default(0);
             $table->timestamps();
         });
     }
@@ -33,6 +31,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('center_services');
+        Schema::dropIfExists('products');
     }
 };

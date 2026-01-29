@@ -19,9 +19,10 @@ class CategorySeeder extends Seeder
 
         foreach ($data as $key => $item) {
             Category::create([
-                'name'       => $item,
-                'slug'       => str()->slug($item),
-                'sort_order' => $key + 1,
+                'name'        => $item,
+                'slug'        => str()->slug($item),
+                'sort_order'  => $key + 1,
+                'is_featured' => true,
             ]);
         }
     }

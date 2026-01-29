@@ -11,6 +11,82 @@ body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+/* Remove focus outline and shadow */
+.btn:focus,
+.btn:active,
+.btn:focus-visible,
+.form-control:focus,
+.form-select:focus,
+.form-check-input:focus {
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+.form-control,
+.form-select {
+    border-color: #dee2e6;
+    /* default border */
+}
+
+.form-control:focus,
+.form-select:focus {
+    border-color: #dee2e6;
+}
+
+*:focus {
+    outline: none !important;
+}
+
+/* Pagination links */
+.page-link:focus,
+.page-link:active,
+.page-link:focus-visible {
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+/* Also catch anchor focus globally (Bootstrap 5.3 focus-ring) */
+a:focus,
+a:focus-visible {
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+.navbar-toggler:focus,
+.navbar-toggler:active,
+.navbar-toggler:focus-visible {
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+.form-check-input:checked {
+    background-color: var(--navy-blue);
+    border-color: var(--navy-blue);
+}
+
+.form-check-input:focus {
+    border-color: var(--navy-blue);
+    box-shadow: 0 0 0 0.15rem rgba(13, 110, 253, 0.25);
+}
+
+.pagination .page-link {
+    color: var(--accent-gold);
+}
+
+.pagination .page-link:hover {
+    color: var(--accent-gold);
+}
+
+.pagination .page-item.active .page-link {
+    background-color: var(--accent-gold);
+    border-color: var(--accent-gold);
+    color: #fff;
+}
+
+.pagination .page-link:focus {
+    box-shadow: none;
+}
+
 /* Navbar */
 .navbar {
     background-color: var(--dark-blue);

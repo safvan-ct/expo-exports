@@ -106,88 +106,49 @@
 
     <section class="py-5" id="products">
         <div class="container">
-            <div class="text-center mb-5">
+            <div class="text-center mb-4">
                 <h2 class="fw-bold">Our Export Portfolio</h2>
                 <p class="text-muted">High-quality products sourced directly from the best farms and manufacturers.</p>
-                <div class="mt-4">
-                    <button class="btn btn-outline-dark active m-1">All Products</button>
-                    <button class="btn btn-outline-dark m-1">Vegetables</button>
-                    <button class="btn btn-outline-dark m-1">Fruits</button>
-                    <button class="btn btn-outline-dark m-1">Food Items</button>
-                </div>
+
+                <ul class="nav nav-pills justify-content-center mt-3" id="productTabs" role="tablist">
+                    @foreach ($categories as $index => $category)
+                        <li class="nav-item" role="presentation">
+                            <button class="me-1 btn btn-outline-dark {{ $index === 0 ? 'active' : '' }}"
+                                id="tab-{{ $category->id }}" data-bs-toggle="pill"
+                                data-bs-target="#pane-{{ $category->id }}" type="button" role="tab">
+                                {{ $category->name }}
+                            </button>
+                        </li>
+                    @endforeach
+                </ul>
             </div>
 
-            <div class="row g-4">
-                <div class="col-md-4 col-lg-3">
-                    <div class="card h-100 shadow-sm product-card">
+            <div class="tab-content">
+                @foreach ($categories as $index => $category)
+                    <div class="tab-pane fade {{ $index === 0 ? 'show active' : '' }}" id="pane-{{ $category->id }}"
+                        role="tabpanel">
 
-                        <div class="product-img-container">
-                            <img src="https://images.unsplash.com/photo-1619566636858-adf3ef46400b?auto=format&fit=crop&q=80&w=600"
-                                class="card-img-top" alt="Fresh Vegetables">
+                        <div class="row g-4">
+                            @foreach ($category->products as $item)
+                                <div class="col-md-4 col-lg-3">
+                                    <div class="card h-100 shadow-sm product-card">
+                                        <div class="product-img-container">
+                                            <img src="{{ $item->image_src }}" class="card-img-top"
+                                                alt="{{ $item->name }}">
+                                        </div>
+
+                                        <div class="card-body">
+                                            <span class="badge bg-success mb-2 ">{{ $category->name }} </span>
+                                            <h5 class="card-title fw-bold">{{ $item->name }}</h5>
+                                            <p class="card-text text-muted small">{{ $item->description }}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            @endforeach
                         </div>
 
-                        <div class="card-body">
-                            <span class="badge bg-success mb-2">Vegetables</span>
-                            <h5 class="card-title fw-bold">Fresh Red Onions</h5>
-                            <p class="card-text text-muted small">Grade A export quality, available in bulk 25kg/50kg
-                                mesh bags.</p>
-                            <a href="#" class="btn btn-navy btn-sm w-100 mt-2">Get Quote</a>
-                        </div>
                     </div>
-                </div>
-
-                <div class="col-md-4 col-lg-3">
-                    <div class="card h-100 shadow-sm product-card">
-
-                        <div class="product-img-container">
-                            <img src="https://images.unsplash.com/photo-1619566636858-adf3ef46400b?auto=format&fit=crop&q=80&w=600"
-                                class="card-img-top" alt="Mangoes">
-                        </div>
-
-                        <div class="card-body">
-                            <span class="badge bg-warning text-dark mb-2">Fruits</span>
-                            <h5 class="card-title fw-bold">Alphonso Mangoes</h5>
-                            <p class="card-text text-muted small">Premium seasonal mangoes with global GAP
-                                certification.</p>
-                            <a href="#" class="btn btn-navy btn-sm w-100 mt-2">Get Quote</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-4 col-lg-3">
-                    <div class="card h-100 shadow-sm product-card">
-
-                        <div class="product-img-container">
-                            <img src="https://images.unsplash.com/photo-1558961363-fa8fdf82db35?auto=format&fit=crop&q=80&w=600"
-                                class="card-img-top" alt="Biscuits">
-                        </div>
-                        <div class="card-body">
-                            <span class="badge bg-primary mb-2">Food Items</span>
-                            <h5 class="card-title fw-bold">Assorted Biscuits</h5>
-                            <p class="card-text text-muted small">Crispy, long-shelf-life biscuits in various export
-                                packaging.</p>
-                            <a href="#" class="btn btn-navy btn-sm w-100 mt-2">Get Quote</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-4 col-lg-3">
-                    <div class="card h-100 shadow-sm product-card">
-
-                        <div class="product-img-container">
-                            <img src="https://images.unsplash.com/photo-1518977676601-b53f82aba655?auto=format&fit=crop&q=80&w=600"
-                                class="card-img-top" alt="Potatoes">
-                        </div>
-
-                        <div class="card-body">
-                            <span class="badge bg-success mb-2">Vegetables</span>
-                            <h5 class="card-title fw-bold">Premium Potatoes</h5>
-                            <p class="card-text text-muted small">Uniform size, high starch content, ideal for global
-                                markets.</p>
-                            <a href="#" class="btn btn-navy btn-sm w-100 mt-2">Get Quote</a>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
     </section>

@@ -1,44 +1,21 @@
 @extends('layouts.admin')
 
 @section('content')
-    <x-admin.page-header title="Govt. Centers" :breadcrumb="[['label' => 'Dashboard', 'link' => route('admin.dashboard')], ['label' => 'Govt. Centers']]" />
+    <x-admin.page-header title="Products" :breadcrumb="[['label' => 'Dashboard', 'link' => route('admin.dashboard')], ['label' => 'Products']]" />
 
     <div class="row">
         <div class="col-sm-12">
             <div class="card">
                 <div class="card-body">
-                    <div id="documentsRepeater">
-                        <div data-repeater-list="documents">
-                            <div data-repeater-item class="row g-2 mb-2">
-                                <div class="col-md-5">
-                                    <input type="text" name="name" class="form-control" placeholder="Document name">
-                                </div>
-
-                                <div class="col-md-6">
-                                    <input type="text" name="note" class="form-control" placeholder="Note">
-                                </div>
-
-                                <div class="col-md-1">
-                                    <button type="button" data-repeater-delete class="btn btn-danger btn-sm">✕</button>
-                                </div>
-                            </div>
-                        </div>
-
-                        <button type="button" data-repeater-create class="btn btn-primary btn-sm mt-2">
-                            + Add Document
-                        </button>
-                    </div>
-
-
                     <select class="form-select selectFilter form-select-sm w-auto" id="getFilter">
-                        <option value="all">All Menu</option>
-                        @foreach ($menus as $item)
+                        <option value="all">All Category</option>
+                        @foreach ($categories as $item)
                             <option value="{{ $item->id }}">{{ $item->name }}</option>
                         @endforeach
                     </select>
 
-                    <button onclick="CRUD.open()" class="btn btn-primary btn-sm add-btn">Add Govt. Center</button>
-                    <x-admin.table :headers="['#', 'Menu', 'Name', 'Tagline', 'Active', 'Actions']"></x-admin.table>
+                    <button onclick="CRUD.open()" class="btn btn-primary btn-sm add-btn">Add Product</button>
+                    <x-admin.table :headers="['#', 'Category', 'Name', 'Description', 'Active', 'Actions']"></x-admin.table>
                 </div>
             </div>
         </div>
@@ -68,7 +45,7 @@
     </script>
 
     <script>
-        CRUD.setResource("govt-center");
+        CRUD.setResource("product");
 
         if (localStorage.getItem("MenuFilter")) {
             $('#getFilter').val(localStorage.getItem("MenuFilter"));
@@ -78,13 +55,14 @@
                 data: "id"
             },
             {
-                data: "menu.name"
+                data: "category.name"
             },
             {
                 data: "name"
             },
             {
-                data: "tagline"
+                data: "description",
+                orderable: false,
             },
 
             // CRUD.columnToggleStatus('key_service'),

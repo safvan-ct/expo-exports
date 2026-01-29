@@ -5,15 +5,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Category extends Model
 {
-    protected $fillable = ['name', 'slug', 'is_active', 'sort_order'];
+    protected $fillable = ['name', 'slug', 'is_featured', 'is_active', 'sort_order'];
 
-    public function governmentCenters()
+    public function products()
     {
-        return $this->hasMany(GovernmentCenter::class);
-    }
-
-    public function centerServices()
-    {
-        return $this->hasMany(CenterService::class);
+        return $this->hasMany(Product::class);
     }
 }

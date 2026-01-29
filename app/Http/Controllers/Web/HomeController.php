@@ -3,8 +3,10 @@ namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
 use App\Jobs\SendBookingAdminMail;
+use App\Models\Category;
 use App\Models\ClientReview;
 use App\Models\ConsultantRequest;
+use App\Models\Product;
 use App\Models\Settings;
 use Illuminate\Http\Request;
 
@@ -16,9 +18,15 @@ class HomeController extends Controller
             ->whereIn('key', ['home_about_heading', 'home_about_desc', 'home_about_image'])
             ->pluck('value', 'key');
 
+        $categories = Category::select('id', 'name', 'slug')
+            ->with(['products' => fn($query) => $query->where('is_active', true)->latest()->limit(4)])
+            ->where('is_featured', true)
+            ->where('is_active', true)
+            ->get();
+
         $clientReviews = ClientReview::select('id', 'name', 'comment', 'rating')->where('is_active', true)->get();
 
-        return view('web.index', compact('about', 'clientReviews'));
+        return view('web.index', compact('about', 'categories', 'clientReviews'));
     }
 
     public function about()
@@ -35,9 +43,22 @@ class HomeController extends Controller
         return view('web.about', compact('about'));
     }
 
-    public function products()
+    public function products(Request $request)
     {
-        return view('web.product-list');
+        $slugs = $request->filled('categories') ? explode(',', $request->categories) : [];
+
+        $categories = Category::select('id', 'name', 'slug')->where('is_active', true)->get();
+
+        $products = Product::select('id', 'name', 'slug', 'description', 'category_id')
+            ->withWhereHas('category', function ($query) use ($slugs) {
+                $query->select('id', 'name', 'slug')
+                    ->when($slugs, fn($q) => $q->whereIn('slug', $slugs))
+                    ->where('is_active', true);
+            })
+            ->where('is_active', true)
+            ->paginate(12);
+
+        return view('web.product-list', compact('categories', 'products'));
     }
 
     public function contact()
