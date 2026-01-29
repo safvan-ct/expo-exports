@@ -8,12 +8,15 @@ use App\Models\ClientReview;
 use App\Models\ConsultantRequest;
 use App\Models\Product;
 use App\Models\Settings;
+use App\Models\Slider;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
     public function index()
     {
+        $sliders = Slider::select('id', 'title', 'description', 'image')->where('is_active', true)->get();
+
         $about = Settings::select('key', 'value')
             ->whereIn('key', ['home_about_heading', 'home_about_desc', 'home_about_image'])
             ->pluck('value', 'key');
@@ -26,7 +29,7 @@ class HomeController extends Controller
 
         $clientReviews = ClientReview::select('id', 'name', 'comment', 'rating')->where('is_active', true)->get();
 
-        return view('web.index', compact('about', 'categories', 'clientReviews'));
+        return view('web.index', compact('sliders', 'about', 'categories', 'clientReviews'));
     }
 
     public function about()

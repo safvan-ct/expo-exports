@@ -3,9 +3,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Poster extends Model
+class Slider extends Model
 {
-    protected $fillable = ['name', 'image', 'is_active'];
+    protected $fillable = ['title', 'description', 'image', 'is_active'];
 
     protected $appends = ['image_src'];
 

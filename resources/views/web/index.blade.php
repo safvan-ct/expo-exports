@@ -3,30 +3,20 @@
 @section('content')
     <header class="swiper heroSwiper">
         <div class="swiper-wrapper">
-            <div class="swiper-slide hero-section text-center">
-                <div class="container">
-                    <h1 class="display-3 fw-bold mb-4">Global Export Solutions You Can Trust</h1>
-                    <p class="lead mb-5">Delivering Quality Products Worldwide.</p>
-                    <div class="dropdown">
-                        <button class="btn btn-quote btn-lg px-5" type="button">
-                            View Products
-                        </button>
+            @foreach ($sliders as $item)
+                <div class="swiper-slide hero-section"
+                    style="background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('{{ $item->image_src }}');">
+                    <div class="container text-center text-white">
+                        <h1 class="display-3 fw-bold mb-4">{{ $item->title }}</h1>
+                        <p class="lead mb-5">{{ $item->description }}</p>
+                        <div class="dropdown">
+                            <a href="{{ route('web.products') }}" class="btn btn-quote btn-lg px-5" type="button">
+                                View Products
+                            </a>
+                        </div>
                     </div>
                 </div>
-            </div>
-
-            <div class="swiper-slide hero-section"
-                style="background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=80&w=2070');">
-                <div class="container text-center text-white">
-                    <h1 class="display-3 fw-bold mb-4">Global Export Solutions</h1>
-                    <p class="lead mb-5">Trusted logistics and cargo handling for international trade.</p>
-                    <div class="dropdown">
-                        <button class="btn btn-quote btn-lg px-5" type="button">
-                            View Products
-                        </button>
-                    </div>
-                </div>
-            </div>
+            @endforeach
         </div>
 
         <div class="swiper-button-next text-white"></div>
@@ -82,7 +72,7 @@
             'us' => 'USA',
             'ae' => 'UAE',
             'gb' => 'UK',
-            'fr' => 'France',
+            'mv' => 'Maldives',
             'de' => 'Germany',
         ];
     @endphp

@@ -71,10 +71,7 @@
                     <li
                         class="pc-item pc-hasmenu
                         {{ Str::is('admin.category.*', Route::currentRouteName()) ||
-                        Str::is('admin.product.*', Route::currentRouteName()) ||
-                        Str::is('admin.service.*', Route::currentRouteName()) ||
-                        Str::is('admin.document-group.*', Route::currentRouteName()) ||
-                        Str::is('admin.document.*', Route::currentRouteName())
+                        Str::is('admin.product.*', Route::currentRouteName())
                             ? 'active pc-trigger'
                             : '' }}">
                         <a href="javascript:void(0)" class="pc-link">
@@ -91,20 +88,12 @@
                                 class="pc-item {{ Route::currentRouteName() == 'admin.product.index' ? 'active' : '' }}">
                                 <a class="pc-link" href="{{ route('admin.product.index') }}">Products</a>
                             </li>
-                            <li
-                                class="pc-item {{ Str::is('admin.service.*', Route::currentRouteName()) ||
-                                Str::is('admin.document-group.*', Route::currentRouteName()) ||
-                                Str::is('admin.document.*', Route::currentRouteName())
-                                    ? 'active'
-                                    : '' }}">
-                                <a class="pc-link" href="{{ route('admin.service.index') }}">Services</a>
-                            </li>
                         </ul>
                     </li>
 
                     <li
                         class="pc-item pc-hasmenu
-                        {{ Str::is('admin.poster.*', Route::currentRouteName()) ||
+                        {{ Str::is('admin.slider.*', Route::currentRouteName()) ||
                         Str::is('admin.settings.*', Route::currentRouteName()) ||
                         Str::is('admin.client-reviews.*', Route::currentRouteName())
                             ? 'active pc-trigger'
@@ -115,12 +104,12 @@
                             <span class="pc-arrow"><i data-feather="chevron-right"></i></span>
                         </a>
                         <ul class="pc-submenu">
+                            <li
+                                class="pc-item {{ Route::currentRouteName() == 'admin.slider.index' ? 'active' : '' }}">
+                                <a class="pc-link" href="{{ route('admin.slider.index') }}">Sliders</a>
+                            </li>
                             <li class="pc-item {{ Route::currentRouteName() == 'admin.about.*' ? 'active' : '' }}">
                                 <a class="pc-link" href="{{ route('admin.about.index') }}">About</a>
-                            </li>
-                            <li
-                                class="pc-item {{ Route::currentRouteName() == 'admin.poster.index' ? 'active' : '' }}">
-                                <a class="pc-link" href="{{ route('admin.poster.index') }}">Poster</a>
                             </li>
                             <li
                                 class="pc-item {{ Str::is('admin.client-reviews.*', Route::currentRouteName()) ? 'active' : '' }}">

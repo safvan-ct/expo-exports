@@ -7,14 +7,11 @@ use App\Http\Controllers\Admin\Auth\RegisterController;
 use App\Http\Controllers\Admin\BookingController;
 use App\Http\Controllers\Admin\ClientReviewController;
 use App\Http\Controllers\Admin\DashboardController;
-use App\Http\Controllers\Admin\PosterController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\Service\CategoryController;
-use App\Http\Controllers\Admin\Service\CenterServiceController;
-use App\Http\Controllers\Admin\Service\DocumentController;
-use App\Http\Controllers\Admin\Service\DocumentGroupController;
 use App\Http\Controllers\Admin\Service\ProductController;
 use App\Http\Controllers\Admin\SettingsController;
+use App\Http\Controllers\Admin\SliderController;
 use App\Http\Controllers\Auth\EmailVerificationNotificationController;
 use Illuminate\Support\Facades\Route;
 
@@ -73,16 +70,16 @@ Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function () 
             Route::patch('/{id}/toggle-status', 'toggleStatus')->name('toggle-status');
         });
 
-    Route::prefix('service')
-        ->name('service.')
-        ->controller(CenterServiceController::class)
+    Route::prefix('slider')
+        ->name('slider.')
+        ->controller(SliderController::class)
         ->group(function () {
             Route::get('/', 'index')->name('index');
             Route::post('/', 'store')->name('store');
-            Route::put('/{centerService}', 'update')->name('update');
+            Route::put('/{slider}', 'update')->name('update');
             Route::delete('/{id}', 'destroy')->name('destroy');
 
-            Route::get('/form/{id?}', 'form')->name('form');
+            Route::get('/form/{id}', 'form')->name('form');
             Route::get('/datatable', 'dataTable')->name('datatable');
             Route::patch('/{id}/toggle-status', 'toggleStatus')->name('toggle-status');
         });
@@ -93,47 +90,6 @@ Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function () 
         ->group(function () {
             Route::get('/', 'index')->name('index');
             Route::post('/', 'store')->name('store');
-        });
-
-    Route::prefix('document')
-        ->name('document.')
-        ->controller(DocumentController::class)
-        ->group(function () {
-            Route::get('/datatable', 'dataTable')->name('datatable');
-            Route::get('{service}', 'index')->name('index');
-            Route::post('/{service}', 'store')->name('store');
-            Route::put('/{document}', 'update')->name('update');
-            Route::delete('/{id}', 'destroy')->name('destroy');
-
-            Route::get('/form/{id}/{service}', 'form')->name('form');
-            Route::patch('/{id}/toggle-status', 'toggleStatus')->name('toggle-status');
-        });
-
-    Route::prefix('document-group')
-        ->name('document-group.')
-        ->controller(DocumentGroupController::class)
-        ->group(function () {
-            Route::get('/datatable', 'dataTable')->name('datatable');
-            Route::get('/{service}', 'index')->name('index');
-            Route::post('/{service}', 'store')->name('store');
-            Route::put('/{documentGroup}', 'update')->name('update');
-
-            Route::get('/form/{id}/{service?}', 'form')->name('form');
-            Route::patch('/{id}/toggle-status', 'toggleStatus')->name('toggle-status');
-        });
-
-    Route::prefix('poster')
-        ->name('poster.')
-        ->controller(PosterController::class)
-        ->group(function () {
-            Route::get('/', 'index')->name('index');
-            Route::post('/', 'store')->name('store');
-            Route::put('/{poster}', 'update')->name('update');
-            Route::delete('/{id}', 'destroy')->name('destroy');
-
-            Route::get('/form/{id}', 'form')->name('form');
-            Route::get('/datatable', 'dataTable')->name('datatable');
-            Route::patch('/{id}/toggle-status', 'toggleStatus')->name('toggle-status');
         });
 
     Route::prefix('client-reviews')
