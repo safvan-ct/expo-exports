@@ -1,0 +1,30 @@
+<?php
+namespace App\Jobs;
+
+use App\Mail\BookingAdminMail;
+use App\Models\Settings;
+use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Foundation\Bus\Dispatchable;
+use Illuminate\Foundation\Queue\Queueable;
+use Illuminate\Queue\InteractsWithQueue;
+use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Facades\Mail;
+
+class SendBookingAdminMail implements ShouldQueue
+{
+    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
+
+    public $tries   = 3;
+    public $backoff = 10;
+
+    public function __construct(public array $booking)
+    {}
+
+    public function handle()
+    {
+        $sendMail = Settings::where('key', 'email')->first();
+        $sendMail = $sendMail ? $sendMail->value : 'isafvanct@gmail.com';
+
+        Mail::to($sendMail)->send(new BookingAdminMail($this->booking));
+    }
+}
