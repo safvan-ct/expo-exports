@@ -9,7 +9,8 @@
 
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <link rel="icon" href="{{ asset('img/logo.png') }}" type="image/x-icon" />
+    <link rel="shortcut icon" href="{{ asset('img/favicon.ico') }}" type="image/x-icon">
+
     <link rel="stylesheet" href="{{ asset('admin/css/style.css') }}" id="main-style-link" />
     <link rel="stylesheet" href="{{ asset('admin/css/style-preset.css') }}" />
 </head>
@@ -30,7 +31,8 @@
                             {{-- <div class="fw-bold fs-2">
                                 <span class="text-success">AL</span>-<span class="text-danger">AQSA</span>
                             </div> --}}
-                            <img src="{{ asset('img/logo.png') }}" alt="image" class="img-fluid brand-logo" style="height: 75px" />
+                            <img src="{{ asset('img/logo.png') }}" alt="image" class="img-fluid brand-logo"
+                                style="height: 75px" />
                         </a>
 
                         @yield('content')

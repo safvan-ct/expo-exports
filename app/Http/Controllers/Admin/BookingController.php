@@ -10,10 +10,7 @@ class BookingController extends Controller
 {
     public function dataTable(Request $request)
     {
-        $query = ConsultantRequest::when($request->filter && $request->filter != 'all', function ($q) use ($request) {
-            $q->where('status', $request->filter);
-        })
-        ->orderBy('status', 'asc');
+        $query = ConsultantRequest::latest();
 
         return DataTables::of($query)->make(true);
     }

@@ -30,7 +30,7 @@
         }
 
         .email-header {
-            background-color: #38c172;
+            background-color: #001f3f;
             padding: 20px 30px;
             color: #ffffff;
         }
@@ -58,8 +58,8 @@
         }
 
         .details-box {
-            border-left: 4px solid #d9534f;
-            background-color: #fdf3f2;
+            border-left: 4px solid #c5a059;
+            background-color: #f3e9d838;
             padding: 15px 20px;
             margin-bottom: 25px;
         }
@@ -70,7 +70,7 @@
         }
 
         .details-row strong {
-            color: #d9534f;
+            color: #001f3f;
         }
 
         .cta-box {
@@ -81,7 +81,7 @@
         .cta-button {
             display: inline-block;
             padding: 12px 24px;
-            background-color: #38c172;
+            background-color: #001f3f;
             color: #ffffff;
             text-decoration: none;
             font-size: 14px;
@@ -98,7 +98,7 @@
         }
 
         .email-footer span {
-            color: #38c172;
+            color: #001f3f;
             font-weight: bold;
         }
     </style>
@@ -118,27 +118,26 @@
             <!-- Body -->
             <div class="email-body">
                 <div class="title">
-                    New Booking Received
+                    New Enquiry Received
                 </div>
 
                 <div class="intro-text">
-                    You have received a new booking request through your website.
+                    You have received a new enquiry request through your website.
                     Please review the details below and take the necessary action.
                 </div>
 
-                <table width="100%" cellpadding="0" cellspacing="0" class="details-box"
-                    style="border-left:4px solid #d9534f;background-color:#fdf3f2;padding:15px 20px;font-size:14px;">
+                <table width="100%" cellpadding="0" cellspacing="0" class="details-box shadow-sm">
                     <tr>
-                        <td width="140" style="padding:6px 0; color:#d9534f; font-weight:bold;">ID</td>
+                        <td width="140" style="padding:6px 0; color:#001f3f; font-weight:bold;">ID</td>
                         <td style="padding:6px 0;">{{ $booking['id'] }}</td>
                     </tr>
                     <tr>
-                        <td width="140" style="padding:6px 0; color:#d9534f; font-weight:bold;">Name</td>
+                        <td width="140" style="padding:6px 0; color:#001f3f; font-weight:bold;">Name</td>
                         <td style="padding:6px 0;">{{ $booking['name'] }}</td>
                     </tr>
 
                     <tr>
-                        <td style="padding:6px 0; color:#d9534f; font-weight:bold;">Email</td>
+                        <td style="padding:6px 0; color:#001f3f; font-weight:bold;">Email</td>
                         <td style="padding:6px 0;">
                             <a href="mailto:{{ $booking['email'] }}" style="color:#365aea; text-decoration:none;">
                                 {{ $booking['email'] }}
@@ -147,21 +146,21 @@
                     </tr>
 
                     <tr>
-                        <td style="padding:6px 0; color:#d9534f; font-weight:bold;">Phone</td>
+                        <td style="padding:6px 0; color:#001f3f; font-weight:bold;">Phone</td>
                         <td style="padding:6px 0;">
                             <a href="tel:{{ $booking['phone'] }}" style="color:#365aea; text-decoration:none;">
-                                {{ formatUaePhone($booking['phone']) }}
+                                {{ formatPhoneNumber($booking['phone'], $booking['country_code']) }}
                             </a>
                         </td>
                     </tr>
 
                     <tr>
-                        <td style="padding:6px 0; color:#d9534f; font-weight:bold;">Service</td>
+                        <td style="padding:6px 0; color:#001f3f; font-weight:bold;">Service</td>
                         <td style="padding:6px 0;">{{ $booking['message'] }}</td>
                     </tr>
 
                     <tr>
-                        <td style="padding:6px 0; color:#d9534f; font-weight:bold;">Booking Date</td>
+                        <td style="padding:6px 0; color:#001f3f; font-weight:bold;">Enquiry Date</td>
                         <td style="padding:6px 0;">
                             {{ \Carbon\Carbon::parse($booking['created_at'])->format('d M Y') }}
                         </td>
@@ -170,7 +169,7 @@
 
                 <div class="cta-box">
                     <a href="{{ route('admin.dashboard') }}" class="cta-button">
-                        View Booking Details
+                        View Enquiry Details
                     </a>
                 </div>
             </div>

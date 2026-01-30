@@ -12,8 +12,8 @@
                             <i class="text-white ti ti-calendar"></i>
                         </div>
                         <div class="ms-2">
-                            <h4 class="text-white mb-1">{{ $newBooking }}</h4>
-                            <p class="mb-0 opacity-75 text-sm">New Booking</p>
+                            <h4 class="text-white mb-1">{{ $todayBooking }}</h4>
+                            <p class="mb-0 opacity-75 text-sm">Today Enquiry</p>
                         </div>
                     </div>
                 </div>
@@ -31,7 +31,7 @@
                         </div>
                         <div class="ms-2">
                             <h4 class="text-white mb-1">{{ $totalBooking }}</h4>
-                            <p class="mb-0 opacity-75 text-sm">Total Booking</p>
+                            <p class="mb-0 opacity-75 text-sm">Total Enquiry</p>
                         </div>
                     </div>
                 </div>
@@ -48,8 +48,8 @@
                             <i class="text-white ti ti-credit-card"></i>
                         </div>
                         <div class="ms-2">
-                            <h4 class="text-white mb-1">{{ $servicesCount }}</h4>
-                            <p class="mb-0 opacity-75 text-sm">Total Services</p>
+                            <h4 class="text-white mb-1">{{ $categoryCount }}</h4>
+                            <p class="mb-0 opacity-75 text-sm">Total Category</p>
                         </div>
                     </div>
                 </div>
@@ -66,8 +66,8 @@
                             <i class="text-warning ti ti-briefcase"></i>
                         </div>
                         <div class="ms-2">
-                            <h4 class="mb-1">{{ $govtServices }}</h4>
-                            <p class="mb-0 opacity-75 text-sm">Govt. Sectors</p>
+                            <h4 class="mb-1">{{ $productCount }}</h4>
+                            <p class="mb-0 opacity-75 text-sm">Total Product</p>
                         </div>
                     </div>
                 </div>
@@ -76,17 +76,10 @@
 
         <div class="col-sm-12">
             <div class="card">
-                <h4 class="card-header">Recent Bookings</h4>
+                <h4 class="card-header">Recent Enquiry</h4>
 
                 <div class="card-body">
-                    <select class="form-select selectFilter form-select-sm w-auto" id="getFilter">
-                        <option value="all">All</option>
-                        <option value="1" selected>New</option>
-                        <option value="2">Opened</option>
-                        <option value="3">Closed</option>
-                    </select>
-
-                    <x-admin.table :headers="['#', 'Name', 'Email', 'Phone', 'Message', 'Booking From', 'Status']" class=''></x-admin.table>
+                    <x-admin.table :headers="['#', 'Name', 'Email', 'Phone', 'Message']" class=''></x-admin.table>
                 </div>
             </div>
         </div>
@@ -133,7 +126,7 @@
             {
                 data: "phone",
                 render: function(data, type, row) {
-                    let display = formatUaePhonePretty(data);
+                    let display = formatPhoneNumberPretty(data, row.country_code);
                     let tel = data.replace(/\D/g, '');
 
                     if (tel.startsWith('0')) {
@@ -146,27 +139,6 @@
             {
                 data: "message"
             },
-            {
-                data: "opened_from",
-            },
-            {
-                data: 'status',
-                render: function(data, type, row) {
-                    // If status is CLOSED
-                    if (data == '3') {
-                        return `<span class="badge bg-success">Closed</span>`;
-                    }
-
-                    // Else show dropdown
-                    return `
-                        <select class="form-select form-select-sm status-change" data-id="${row.id}">
-                            <option value="1" ${data == '1' ? 'selected' : ''}>New</option>
-                            <option value="2" ${data == '2' ? 'selected' : ''}>Opened</option>
-                            <option value="3">Closed</option>
-                        </select>
-                    `;
-                }
-            }
         ];
 
         window.crudTable = CRUD.loadDataTable(tableColumns, "dataTable", true);
@@ -199,7 +171,7 @@
             });
         });
 
-        function formatUaePhonePretty(phone) {
+        function formatPhoneNumberPretty(phone, country_code) {
             if (!phone) return '';
 
             // remove everything except digits
@@ -214,10 +186,14 @@
             //     return phone; // fallback if invalid
             // }
 
-            let country = phone.substring(0, 3); // 971
-            let operator = phone.substring(3, 5); // 50
-            let part1 = phone.substring(5, 8); // 000
-            let part2 = phone.substring(8); // 4567
+            let count = country_code.length;
+            let inc = count <= 2 ? 3 : 2;
+
+
+            let country = phone.substring(0, count); // 91
+            let operator = phone.substring(count, count + inc); // 50
+            let part1 = phone.substring(count + inc, count + inc + 3); // 000
+            let part2 = phone.substring(count + 6); // 4567
 
             return `+${country} ${operator} ${part1} ${part2}`;
         }

@@ -1,6 +1,7 @@
 <?php
 namespace Database\Seeders;
 
+use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -13,17 +14,17 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory()->create([
-        //     'name'     => 'Expo Exports',
-        //     'email'    => 'expoexports@admin.com',
-        //     'password' => Hash::make('expo@2026$exports'),
-        // ]);
+        User::factory()->create([
+            'name'     => 'Expo Exports',
+            'email'    => 'expoexports@admin.com',
+            'password' => 'expo@2026$exports',
+        ]);
 
         $this->call([
             SliderSeeder::class,
             CategorySeeder::class,
             SettingsSeeder::class,
-            ProductSeeder::class
+            ProductSeeder::class,
         ]);
     }
 }

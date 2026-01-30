@@ -15,12 +15,9 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('email');
+            $table->string('country_code')->nullable();
             $table->string('phone');
             $table->text('message');
-            $table->string('opened_from')->nullable();
-            $table->string('ip_address')->nullable();
-            $table->string('user_agent')->nullable();
-            $table->tinyInteger('status')->default(1)->comment('1 = New, 2 = Open, 3 = Closed');
             $table->timestamps();
         });
     }

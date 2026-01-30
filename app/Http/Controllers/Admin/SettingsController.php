@@ -2,7 +2,6 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\CenterService;
 use App\Models\Settings;
 use Illuminate\Http\Request;
 
@@ -11,9 +10,8 @@ class SettingsController extends Controller
     public function index()
     {
         $settings = Settings::pluck('value', 'key');
-        $services = CenterService::select('id', 'name', 'slug')->get();
 
-        return view('admin.settings', compact('settings', 'services'));
+        return view('admin.settings', compact('settings'));
     }
 
     public function store(Request $request)
@@ -23,7 +21,7 @@ class SettingsController extends Controller
             'address_2'        => 'nullable|string|max:255',
 
             'email'            => 'required|email',
-            'primary_phone'    => 'required|digits_between:12,20',
+            'primary_phone'    => 'required|digits_between:11,20',
 
             'whatsapp'         => 'nullable|digits_between:12,20',
             'whatsapp_message' => 'nullable|string|max:255',

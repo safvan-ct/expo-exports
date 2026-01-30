@@ -37,6 +37,7 @@
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@25.13.3/build/css/intlTelInput.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 
     <link rel="stylesheet" href="{{ asset('web/css/style.css') }}" />
@@ -108,7 +109,7 @@
                             Products
                         </a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item d-none">
                         <a class="nav-link {{ request()->routeIs('web.services') ? 'active' : '' }}" href="#">
                             Services
                         </a>
@@ -146,8 +147,9 @@
                     </p>
                     <p class="m-1">
                         <a class="text-decoration-none text-reset"
-                            href="tel:{{ $generalSettings['primary_phone'] }}">
-                            <i class="fas fa-phone me-2"></i> {{ $generalSettings['primary_phone'] }}
+                            href="tel:{{ str_replace(' ', '', $generalSettings['primary_phone']) }}">
+                            <i class="fas fa-phone me-2"></i>
+                            {{ formatPhoneNumber($generalSettings['primary_phone']) }}
                         </a>
                     </p>
                     <p class="m-1">
@@ -184,11 +186,46 @@
     </footer>
 
     <div class="page-loader" id="pageLoader">
-        <div class="uae-spinner"></div>
+        <div class="loader-spinner"></div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@25.13.3/build/js/intlTelInput.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+    <script>
+        @if (session('success'))
+            document.addEventListener('DOMContentLoaded', function() {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Success',
+                    text: "{{ session('success') }}",
+                    confirmButtonColor: '#009736', // UAE green
+                });
+            });
+        @endif
+
+        @if (session('error'))
+            toastr.error("{{ session('error') }}");
+        @endif
+
+        document.addEventListener("DOMContentLoaded", function() {
+            document.querySelector('.page-loader').style.display = 'none';
+
+            document.querySelectorAll('.dropdown-submenu > a').forEach(function(element) {
+                element.addEventListener('click', function(e) {
+                    if (window.innerWidth < 992) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        let
+                            parentListItem = this.closest('.dropdown-submenu');
+                        parentListItem.classList.toggle('show');
+                    }
+                });
+            });
+        });
+    </script>
 
     @stack('scripts')
 </body>

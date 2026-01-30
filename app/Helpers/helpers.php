@@ -1,20 +1,23 @@
 <?php
 
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Str;
 
-if (! function_exists('formatUaePhone')) {
-    function formatUaePhone(string $phone): string
+if (! function_exists('formatPhoneNumber')) {
+    function formatPhoneNumber(string $phone, ?string $countryCode = '91'): string
     {
         $digits = preg_replace('/\D+/', '', $phone);
+        $count  = strlen($countryCode);
+        $inc    = $count <= 2 ? 3 : 2;
+        $start  = $count == 1 ? 4 : 5;
+        $start2 = $count == 1 ? 7 : 8;
 
-        if (strlen($digits) >= 8 && Str::startsWith($digits, '971')) {
+        if (strlen($digits) >= 8) {
             return sprintf(
                 '+%s %s %s %s',
-                substr($digits, 0, 3),
-                substr($digits, 3, 2),
-                substr($digits, 5, 3),
-                substr($digits, 8)
+                substr($digits, 0, $count),
+                substr($digits, $count, $inc),
+                substr($digits, $start, 3),
+                substr($digits, $start2)
             );
         }
 

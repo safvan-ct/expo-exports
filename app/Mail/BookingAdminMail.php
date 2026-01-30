@@ -35,7 +35,7 @@ class BookingAdminMail extends Mailable implements ShouldQueue
                     $this->booking['name'] ?? 'Customer'
                 ),
             ],
-            subject: 'New Booking Received – Action Required',
+            subject: 'New Enquiry Received – Action Required',
         );
     }
 
