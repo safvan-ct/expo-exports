@@ -5,24 +5,29 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>{{ config('app.name') }}</title>
+    <title>{{ config('app.name') }} | @yield('title')</title>
     <meta name="title" content="Global Export Solutions | {{ config('app.name') }}">
 
-    <meta name="description" content="">
-    <meta name="keywords" content="">
+    <meta name="title" content="Global Export Solutions | {{ config('app.name') }} - Fast & Secure Logistics">
+    <meta name="description"
+        content="Expo Exports provides world-class global logistics, secure packing, and on-time delivery. We connect businesses to international markets with reliable freight and shipping solutions.">
+    <meta name="keywords"
+        content="global export solutions, international shipping, freight forwarding, secure logistics, cargo delivery, trade partners, export business, global logistics services, Expo Exports">
     <meta name="author" content="{{ config('app.name') }}">
     <meta name="robots" content="index, follow">
 
     <meta property="og:type" content="website">
     <meta property="og:url" content="{{ url()->current() }}">
-    <meta property="og:title" content="Global Export Solutions">
-    <meta property="og:description" content="">
+    <meta property="og:title" content="Global Export Solutions | {{ config('app.name') }}">
+    <meta property="og:description"
+        content="Reliable, secure, and fast global shipping services. Trust Expo Exports to deliver your cargo across the globe with precision and care.">
     <meta property="og:image" content="{{ asset('img/logo.png') }}">
 
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="{{ url()->current() }}">
-    <meta property="twitter:title" content="Global Export Solutions">
-    <meta property="twitter:description" content="">
+    <meta property="twitter:title" content="Global Export Solutions | {{ config('app.name') }}">
+    <meta property="twitter:description"
+        content="Seamless international logistics and shipping. Experience the power of a global network with Expo Exports.">
     <meta property="twitter:image" content="{{ asset('img/logo.png') }}">
 
     <link rel="canonical" href="{{ url()->current() }}">
@@ -39,6 +44,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@25.13.3/build/css/intlTelInput.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.13.1/font/bootstrap-icons.min.css" integrity="sha512-t7Few9xlddEmgd3oKZQahkNI4dS6l80+eGEzFQiqtyVYdvcSG2D3Iub77R20BdotfRPA9caaRkg1tyaJiPmO0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <link rel="stylesheet" href="{{ asset('web/css/style.css') }}" />
 
@@ -109,8 +115,9 @@
                             Products
                         </a>
                     </li>
-                    <li class="nav-item d-none">
-                        <a class="nav-link {{ request()->routeIs('web.services') ? 'active' : '' }}" href="#">
+                    <li class="nav-item">
+                        <a class="nav-link {{ request()->routeIs('web.services') ? 'active' : '' }}"
+                            href="{{ route('web.services') }}">
                             Services
                         </a>
                     </li>
@@ -174,8 +181,7 @@
                                 class="fab fa-instagram me-2"></i></a>
                         <a href="{{ $generalSettings['linkedin'] ?? 'javascript:void(0)' }}"><i
                                 class="fab fa-linkedin me-2"></i></a>
-                        <a href="{{ $generalSettings['twitter'] ?? 'javascript:void(0)' }}"><i
-                                class="fab fa-twitter"></i></a>
+                        <a href="{{ $generalSettings['twitter'] ?? 'javascript:void(0)' }}"><i class="bi bi-twitter-x"></i></a>
                     </div>
                 </div>
             </div>

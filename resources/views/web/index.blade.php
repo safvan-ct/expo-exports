@@ -1,5 +1,7 @@
 @extends('layouts.web')
 
+@section('title', 'Home')
+
 @section('content')
     <header class="swiper heroSwiper">
         <div class="swiper-wrapper">
@@ -24,7 +26,7 @@
         <div class="swiper-pagination"></div>
     </header>
 
-    <section class="about-section">
+    <section class="py-5">
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-md-6 mb-4 mb-md-0">
@@ -33,35 +35,59 @@
                 </div>
                 <div class="col-md-6 ps-md-5">
                     <h2 class="fw-bold mb-4">{{ $about['home_about_heading'] }}</h2>
-                    <p class="fs-5 text-muted italic">"{{ $about['home_about_desc'] }}"</p>
+                    <p class="fs-5 italic">"{{ $about['home_about_desc'] }}"</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="why-us">
+    <section class="py-3">
         <div class="container text-center">
-            <h2 class="mb-5 fw-bold">Why Choose Us</h2>
-            <div class="row g-4">
-                <div class="col-md-4 feature-card">
-                    <i class="fas fa-globe-americas fa-3x mb-3 text-info"></i>
-                    <h4>Global Reach</h4>
+            <h2 class="mb-4 fw-bold">Why Choose Us</h2>
+            <div class="row g-4 justify-content-center">
+                <div class="col-md-4">
+                    <div class="feature-card text-center p-4">
+                        <div class="icon-box mb-3">
+                            <i class="fas fa-globe-americas fa-3x"></i>
+                        </div>
+                        <h4>Global Reach</h4>
+                    </div>
                 </div>
-                <div class="col-md-4 feature-card">
-                    <i class="fas fa-check-circle fa-3x mb-3 text-info"></i>
-                    <h4>Quality Assurance</h4>
+
+                <div class="col-md-4">
+                    <div class="feature-card text-center p-4">
+                        <div class="icon-box mb-3">
+                            <i class="fas fa-check-circle fa-3x"></i>
+                        </div>
+                        <h4>Quality Assurance</h4>
+                    </div>
                 </div>
-                <div class="col-md-4 feature-card">
-                    <i class="fas fa-shipping-fast fa-3x mb-3 text-info"></i>
-                    <h4>On-Time Delivery</h4>
+
+                <div class="col-md-4">
+                    <div class="feature-card text-center p-4">
+                        <div class="icon-box mb-3">
+                            <i class="fas fa-shipping-fast fa-3x"></i>
+                        </div>
+                        <h4>On-Time Delivery</h4>
+                    </div>
                 </div>
-                <div class="col-md-6 col-lg-4 offset-lg-2 feature-card">
-                    <i class="fas fa-box-open fa-3x mb-3 text-info"></i>
-                    <h4>Secure Packing</h4>
+
+                <div class="col-md-4">
+                    <div class="feature-card text-center p-4">
+                        <div class="icon-box mb-3">
+                            <i class="fas fa-box-open fa-3x"></i>
+                        </div>
+                        <h4>Secure Packing</h4>
+                    </div>
                 </div>
-                <div class="col-md-6 col-lg-4 feature-card">
-                    <i class="fas fa-handshake fa-3x mb-3 text-info"></i>
-                    <h4>Trusted Partners</h4>
+
+                <div class="col-md-4">
+                    <div class="feature-card text-center p-4">
+                        <div class="icon-box mb-3">
+                            <i class="fas fa-handshake fa-3x"></i>
+                        </div>
+                        <h4>Trusted Partners</h4>
+                    </div>
                 </div>
             </div>
         </div>
@@ -79,7 +105,7 @@
 
     <section class="py-5">
         <div class="container text-center">
-            <h2 class="fw-bold mb-5">Countries We Export To</h2>
+            <h2 class="fw-bold mb-4">Countries We Export To</h2>
             <div class="row g-4 justify-content-center">
                 @foreach ($countries as $key => $item)
                     <div class="col-6 col-md-2">
@@ -98,12 +124,12 @@
         <div class="container">
             <div class="text-center mb-4">
                 <h2 class="fw-bold">Our Export Portfolio</h2>
-                <p class="text-muted">High-quality products sourced directly from the best farms and manufacturers.</p>
+                <p class="">High-quality products sourced directly from the best farms and manufacturers.</p>
 
                 <ul class="nav nav-pills justify-content-center mt-3" id="productTabs" role="tablist">
                     @foreach ($categories as $index => $category)
                         <li class="nav-item" role="presentation">
-                            <button class="me-1 btn btn-outline-dark {{ $index === 0 ? 'active' : '' }}"
+                            <button class="me-1 btn btn-outline-dark {{ $index === 0 ? 'active' : '' }} text-white"
                                 id="tab-{{ $category->id }}" data-bs-toggle="pill"
                                 data-bs-target="#pane-{{ $category->id }}" type="button" role="tab">
                                 {{ $category->name }}
@@ -128,7 +154,7 @@
                                         </div>
 
                                         <div class="card-body">
-                                            <span class="badge bg-success mb-2 ">{{ $category->name }} </span>
+                                            <span class="badge bg-dark mb-2 ">{{ $category->name }} </span>
                                             <h5 class="card-title fw-bold">{{ $item->name }}</h5>
                                             <p class="card-text text-muted small">{{ $item->description }}</p>
                                         </div>
@@ -144,9 +170,9 @@
     </section>
 
     @if ($clientReviews->count() > 0)
-        <section class="py-5 bg-light">
+        <section class="py-5">
             <div class="container">
-                <h2 class="text-center fw-bold mb-5">What Our Customers Say</h2>
+                <h2 class="text-center fw-bold mb-4">What Our Customers Say</h2>
                 <div class="row g-4">
                     @foreach ($clientReviews as $item)
                         @php

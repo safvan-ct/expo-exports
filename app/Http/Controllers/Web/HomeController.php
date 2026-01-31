@@ -64,6 +64,11 @@ class HomeController extends Controller
         return view('web.product-list', compact('categories', 'products'));
     }
 
+    public function services()
+    {
+        return view('web.services');
+    }
+
     public function contact()
     {
         return view('web.contact');

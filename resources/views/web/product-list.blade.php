@@ -1,11 +1,13 @@
 @extends('layouts.web')
 
+@section('title', 'Products')
+
 @section('content')
     @php
         $selected = request('categories') ? explode(',', request('categories')) : [];
     @endphp
 
-    <div class="bg-white py-4 border-bottom mb-5">
+    <div class="py-4">
         <div class="container text-center">
             <h1 class="fw-bold">Export Product Catalog</h1>
             <p class="text-muted">High-quality agricultural and processed goods for global markets.</p>
@@ -20,13 +22,13 @@
                     <h5 class="filter-title">Categories</h5>
                     <div class="form-check mb-2">
                         <input class="form-check-input" type="checkbox" id="selectAll" @checked((count($selected) == count($categories) || count($selected) == 0))>
-                        <label class="form-check-label" for="selectAll">All Products</label>
+                        <label class="form-check-label text-dark" for="selectAll">All Products</label>
                     </div>
                     @foreach ($categories as $item)
                         <div class="form-check mb-2">
                             <input class="form-check-input cat-filter" type="checkbox" id="{{ $item->id }}"
                                 @checked((in_array($item->slug, $selected)) || (count($selected) == 0)) value="{{ $item->slug }}">
-                            <label class="form-check-label" for="{{ $item->id }}">{{ $item->name }}</label>
+                            <label class="form-check-label text-dark" for="{{ $item->id }}">{{ $item->name }}</label>
                         </div>
                     @endforeach
 
