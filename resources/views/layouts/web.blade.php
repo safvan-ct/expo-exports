@@ -44,7 +44,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@25.13.3/build/css/intlTelInput.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.13.1/font/bootstrap-icons.min.css" integrity="sha512-t7Few9xlddEmgd3oKZQahkNI4dS6l80+eGEzFQiqtyVYdvcSG2D3Iub77R20BdotfRPA9caaRkg1tyaJiPmO0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.13.1/font/bootstrap-icons.min.css"
+        integrity="sha512-t7Few9xlddEmgd3oKZQahkNI4dS6l80+eGEzFQiqtyVYdvcSG2D3Iub77R20BdotfRPA9caaRkg1tyaJiPmO0g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <link rel="stylesheet" href="{{ asset('web/css/style.css') }}" />
 
@@ -159,6 +162,17 @@
                             {{ formatPhoneNumber($generalSettings['primary_phone']) }}
                         </a>
                     </p>
+
+                    @if (isset($generalSettings['secondary_phone']))
+                        <p class="m-1">
+                            <a class="text-decoration-none text-reset"
+                                href="tel:{{ str_replace(' ', '', $generalSettings['secondary_phone']) }}">
+                                <i class="fas fa-phone me-2"></i>
+                                {{ formatPhoneNumber($generalSettings['secondary_phone']) }}
+                            </a>
+                        </p>
+                    @endif
+
                     <p class="m-1">
                         <a class="text-decoration-none text-reset" href="mailto:{{ $generalSettings['email'] }}">
                             <i class="fas fa-envelope me-2"></i> {{ $generalSettings['email'] }}
@@ -175,13 +189,14 @@
                 <div class="col-md-4 mb-3">
                     <h5 class="fw-bold mb-3">Follow Us</h5>
                     <div class="social-icons">
-                        <a href="{{ $generalSettings['facebook'] ?? 'javascript:void(0)' }}"><i
+                        <a href="{{ $generalSettings['facebook'] ?? 'javascript:void(0)' }}" target="_blank"><i
                                 class="fab fa-facebook me-2"></i></a>
-                        <a href="{{ $generalSettings['instagram'] ?? 'javascript:void(0)' }}"><i
+                        <a href="{{ $generalSettings['instagram'] ?? 'javascript:void(0)' }}" target="_blank"><i
                                 class="fab fa-instagram me-2"></i></a>
-                        <a href="{{ $generalSettings['linkedin'] ?? 'javascript:void(0)' }}"><i
+                        <a href="{{ $generalSettings['linkedin'] ?? 'javascript:void(0)' }}" target="_blank"><i
                                 class="fab fa-linkedin me-2"></i></a>
-                        <a href="{{ $generalSettings['twitter'] ?? 'javascript:void(0)' }}"><i class="bi bi-twitter-x"></i></a>
+                        <a href="{{ $generalSettings['twitter'] ?? 'javascript:void(0)' }}" target="_blank"><i
+                                class="bi bi-twitter-x"></i></a>
                     </div>
                 </div>
             </div>

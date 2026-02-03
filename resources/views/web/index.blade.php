@@ -99,7 +99,7 @@
             'ae' => 'UAE',
             'gb' => 'UK',
             'mv' => 'Maldives',
-            'de' => 'Germany',
+            'es' => 'Spain',
         ];
     @endphp
 
@@ -110,7 +110,7 @@
                 @foreach ($countries as $key => $item)
                     <div class="col-6 col-md-2">
                         <div class="p-3 border rounded shadow-sm h-100">
-                            <img src="https://flagcdn.com/{{ $key }}.svg" width="60" alt="USA"
+                            <img src="https://flagcdn.com/{{ $key }}.svg" width="60" alt="{{ $item }}"
                                 class="mb-2">
                             <p class="fw-bold mb-0">{{ $item }}</p>
                         </div>

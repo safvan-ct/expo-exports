@@ -16,12 +16,14 @@
                 value="{{ old('address_2', $settings['address_2'] ?? null) }}" :class="'col-12 col-md-6'" />
 
             <x-admin.input name="email" label="Email" value="{{ old('email', $settings['email'] ?? null) }}"
-                :class="'col-12 col-md-4'" />
+                :class="'col-12 col-md-3'" />
             <x-admin.input name="primary_phone" type="tel" label="Primary Phone"
-                value="{{ old('primary_phone', $settings['primary_phone'] ?? null) }}" :class="'col-12 col-md-4'" />
+                value="{{ old('primary_phone', $settings['primary_phone'] ?? null) }}" :class="'col-12 col-md-3'" />
+            <x-admin.input name="secondary_phone" type="tel" label="Secondary Phone"
+                value="{{ old('secondary_phone', $settings['secondary_phone'] ?? null) }}" :class="'col-12 col-md-3'" />
 
             <x-admin.input name="whatsapp" type="tel" label="Whatsapp Phone"
-                value="{{ old('whatsapp', $settings['whatsapp'] ?? null) }}" :class="'col-12 col-md-4'" />
+                value="{{ old('whatsapp', $settings['whatsapp'] ?? null) }}" :class="'col-12 col-md-3'" />
             <x-admin.input name="whatsapp_message" label="WhatsApp Message"
                 value="{{ old('whatsapp_message', $settings['whatsapp_message'] ?? null) }}" :class="'col-12 col-md-6'" />
 

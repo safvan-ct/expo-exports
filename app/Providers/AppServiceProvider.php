@@ -26,7 +26,10 @@ class AppServiceProvider extends ServiceProvider
         View::composer('*', function ($view) {
             $settings = Cache::rememberForever('general_settings', function () {
                 return Settings::select('key', 'value')
-                    ->whereIn('key', ['address_1', 'address_2', 'primary_phone', 'email', 'whatsapp', 'whatsapp_message', 'about_us'])
+                    ->whereIn('key', [
+                        'address_1', 'address_2', 'primary_phone', 'secondary_phone', 'email', 'whatsapp', 'whatsapp_message', 'about_us',
+                        'instagram', 'facebook', 'twitter', 'linkedin',
+                    ])
                     ->pluck('value', 'key');
             });
 

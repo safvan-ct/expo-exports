@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Settings;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 
 class SettingsController extends Controller
 {
@@ -22,6 +23,7 @@ class SettingsController extends Controller
 
             'email'            => 'required|email',
             'primary_phone'    => 'required|digits_between:11,20',
+            'secondary_phone'  => 'nullable|digits_between:11,20',
 
             'whatsapp'         => 'nullable|digits_between:12,20',
             'whatsapp_message' => 'nullable|string|max:255',
@@ -38,6 +40,8 @@ class SettingsController extends Controller
             Settings::updateOrCreate(['key' => $key], [
                 'value' => is_array($value) ? implode(',', $value) : $value,
             ]);
+
+            Cache::forget('general_settings');
         }
 
         return back()->with('success', 'Settings saved');
