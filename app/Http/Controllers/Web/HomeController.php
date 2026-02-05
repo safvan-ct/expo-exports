@@ -52,7 +52,7 @@ class HomeController extends Controller
 
         $categories = Category::select('id', 'name', 'slug')->where('is_active', true)->get();
 
-        $products = Product::select('id', 'name', 'slug', 'description', 'category_id')
+        $products = Product::select('id', 'name', 'slug', 'image', 'description', 'category_id')
             ->withWhereHas('category', function ($query) use ($slugs) {
                 $query->select('id', 'name', 'slug')
                     ->when($slugs, fn($q) => $q->whereIn('slug', $slugs))
